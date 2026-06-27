@@ -1,0 +1,179 @@
+<!--  Autores: Estefan - Ghirardi
+  Materia: Programación I
+  Obligatorio 1 - ORT Uruguay -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="CSS/estilos.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistema de Gestión (Estefan-Ghirardi)</title>
+</head>
+<body>
+  <h1>Sistema de Gestión (Estefan-Ghirardi)</h1>
+  <section> 
+   <h2>Manejo de Influencers</h2>
+   <article>
+     <h3>Alta de Influencer</h3>
+     <input type="button" value="Agregar Influencer">
+    </article>
+    <article>
+   <h3>Tabla de Influencers</h3>
+   <table>
+         <thead> 
+           <th><input type="button" value="Nombre↑↓"></th>
+           <th>Email</th>
+           <th>% Comisión</th>
+           <th>Total a cobrar</th>
+           <th>Etiquetas</th>
+           <th>Detalle</th>
+          </thead>
+          <tbody id="tablaInfluencers"></tbody>
+    </table>
+      <p>Información: 🔥 Top comisión (cobra más $) 🧊 Cero ventas 🟢 Venta más cara (mayor monto en una sola venta)</p>
+    </article>
+ </section>
+ <section>
+   <h2>Manejo de Artículos</h2>
+   <article>
+     <h3>Alta de Artículo</h3>
+     <input type="button" value="Agregar Artículo">
+   </article>
+    <article>
+     <h3>Tabla de Artículos</h3>
+     <table>
+         <tr>
+           <th><input type="button" value="Código↑↓"></th>
+           <th>Descripción</th>
+           <th>Precio</th>
+         </tr>
+         <tr>
+           <td>A001⭐</td>
+           <td>Remera algodón básica</td>
+           <td>$ 1000</td>
+         </tr>
+         <tr>
+           <td>A002</td>
+           <td>Zapatillas deportivas</td>
+           <td>$ 300</td>
+         </tr>
+         <tr>
+           <td>A003</td>
+           <td>Gorra ajustable</td>
+           <td>$ 500</td>
+         </tr>
+       </table>
+     <p>Información: ⭐ Artículo más vendido (mayor cantidad de unidades vendidas)</p>
+    </article>
+  </section>
+  <section>
+   <h2>Ventas</h2>
+   <article>
+     <h3>Alta de Ventas</h3>
+     <input type="button" value="Agregar venta">
+    </article>
+    <article>
+     <h3>Tabla de Ventas (ordenada por número de venta)</h3>
+     <table>
+         <tr>
+           <th>Nro Venta</th>
+           <th>Código de Artículo</th>
+           <th>Nombre de influencer</th>
+           <th>Cantidad</th>
+           <th>Medio</th>
+           <th>Acción</th>
+         </tr>
+         <tr>
+           <td>1</td>
+           <td>A001</td>
+           <td>Ana Pérez</td>
+           <td>3</td>
+           <td>1- Instagram</td>
+           <td><input type="button" value="❌"/></td>
+         </tr>
+         <tr>
+           <td>2</td>
+           <td>A002</td>
+           <td>Juan Gómez</td>
+           <td>1</td>
+           <td>2- YouTube</td>
+           <td><input type="button" value="❌"/></td>
+         </tr>
+       </table>
+     </article>
+    <article>
+     <h3>Gráfico de burbujas</h3>
+   </article>
+  </section>
+  <dialog id="dialog-influencer">
+    <h3>Datos del influencer a agregar</h3>
+    <h3>Influencer</h3>
+    <form id="form-influencer">
+      <label for="influencerName">Nombre</label>
+      <input type="text" id="influencerName" name="influencerName">
+      <label for="mail">Mail</label>
+      <input type="email" id="mail" name="mail">
+      <label for="comision">% Comisión</label>
+      <input type="number" id="comision" name="comision" min="0" max="100">
+      <div>
+        <button type="button" onclick="this.closest('dialog').close()">Cancelar</button>
+        <button type="submit">Agregar</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog id="dialog-articulo">
+    <h3>Datos del artículo a agregar</h3>
+    <h3>Artículo</h3>
+    <form id="form-articulo">
+      <label for="codigo">Código</label>
+      <input type="text" id="codigo" name="codigo">
+      <label for="descripcion">Descripción</label>
+      <input type="text" id="descripcion" name="descripcion">
+      <label for="precio">Precio</label>
+      <input type="number" id="precio" name="precio" min="0" step="0.01">
+      <div>
+        <button type="button" onclick="this.closest('dialog').close()">Cancelar</button>
+        <button type="submit">Agregar</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog id="dialog-venta">
+    <h3>Datos de la venta a agregar</h3>
+    <h4>Venta</h4>
+    <form id="form-venta">
+      <label for="articulo">Artículo</label>
+      <select name="articulo" id="articulo">
+        <option value="A001">A001</option>
+        <option value="A002">A002</option>
+        <option value="A003">A003</option>
+      </select>
+      <label for="influencerSelect">Influencer</label>
+      <select name="influencer" id="influencerSelect">
+        <option value="Ana Perez">Ana Pérez</option>
+        <option value="Juan Gomez">Juan Gómez</option>
+        <option value="Lucia Martinez">Lucía Martínez</option>
+      </select>
+      <label for="cantidad">Cantidad</label>
+      <input type="number" id="cantidad" name="cantidad" min="1">
+      <label for="Medio">Medio</label>
+      <select name="Medio" id="Medio">
+        <option value="Instagram">1- Instagram</option>
+        <option value="YouTube">2- YouTube</option>
+        <option value="X">3- X</option>
+        <option value="TikTok">4- TikTok</option>
+        <option value="Facebook">5- Facebook</option>
+        <option value="Otras">6- Otras</option>
+      </select>
+      <div>
+        <button type="button" onclick="this.closest('dialog').close()">Cancelar</button>
+        <button type="submit">Agregar</button>
+      </div>
+    </form>
+  </dialog>
+  <footer>
+    <p>Tomás Estefan | Estudiante Nro: 333906 | <a href="https://www.ort.edu.uy/" target="_blank">ORT</a></p>
+    <p>Gerónimo Ghirardi | Estudiante Nro: 371252 | <a href="https://www.ort.edu.uy/" target="_blank">ORT</a></p>
+</footer>
+<script src="JS/clases.js"></script>
+<script src="JS/funciones.js"></script>
+</body>
